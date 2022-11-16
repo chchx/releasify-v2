@@ -6,14 +6,16 @@ const handler = async (req, res) => {
     token: {accessToken},
   } = await getSession({req});
 
-  // const response = await getFollowedArtists(accessToken);
-  const response = await getArtists(accessToken);
+  let response = await getFollowedArtists(accessToken);
+  // const response = await getArtists(accessToken);
   // console.log('outer response is....', response)
 
   // return response
 
-  return res.status(200).json(response);
+  response = res.status(200).json(response);
 
+  console.log(response)
+  return response;
 };
 
 export default handler;
