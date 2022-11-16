@@ -1,4 +1,4 @@
-import { getArtists } from '../../lib/spotify';
+import { getArtists, getFollowedArtists } from '../../lib/spotify';
 import {getSession} from 'next-auth/react';
 
 const handler = async (req, res) => {
@@ -6,15 +6,14 @@ const handler = async (req, res) => {
     token: {accessToken},
   } = await getSession({req});
 
+  // const response = await getFollowedArtists(accessToken);
   const response = await getArtists(accessToken);
-  console.log('outer response is....', response)
-  // console.log('before .json is called: ', response.body)
+  // console.log('outer response is....', response)
 
-  // const items = await response.json();
+  // return response
 
-  // return res.status(200).json({items});
+  return res.status(200).json(response);
 
-  // getArtists(accessToken)
 };
 
 export default handler;
