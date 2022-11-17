@@ -64,6 +64,7 @@ export default function Home() {
     <div className="App" tabIndex={0} onKeyDown={keyHandler}>
       <header className="App-header">
         <h1>Releasify</h1>
+        <h3>BETA</h3>
       </header>
       {Object.keys(albumData).length > 0 ?
         <main>
