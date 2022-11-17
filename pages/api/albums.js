@@ -1,16 +1,14 @@
-import { getArtists, getFollowedArtists } from '../../lib/spotify';
+import { getArtists, getArtistAlbums } from '../../lib/spotify';
 import {getSession} from 'next-auth/react';
 
 const handler = async (req, res) => {
   const {
     token: {accessToken},
   } = await getSession({req});
+  // console.log('req...', req)
+  // console.log('{req}...', {req})
 
-  let response = await getFollowedArtists(accessToken);
-  // const response = await getArtists(accessToken);
-  // console.log('outer response is....', response)
-
-  // return response
+  let response = await getArtistAlbums(accessToken);
 
   response = res.status(200).json(response);
 
