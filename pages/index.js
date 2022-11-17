@@ -127,7 +127,7 @@ export default function Home() {
             Signed in as {session?.token?.email} <br />
           </div>
           : <div>
-            <button onClick={() => signIn()}>Sign in to Spotify</button>
+            <button onClick={() => signIn()}>Connect Spotify</button>
           </div>}
       </div>
 
