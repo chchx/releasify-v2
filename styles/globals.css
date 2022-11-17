@@ -1,26 +1,148 @@
-html,
+html {
+  overflow-y: scroll;
+}
+
 body {
-  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  height: 100vh;
+  background-color: #282c34;
+  background-color: black;
+}
+
+.App {
+  text-align: center;
+
+  outline: none;
+  position: relative;
+  min-height: 100vh;
+}
+
+.App-header {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  background-color: #282c34;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  margin-top: 30px;
+}
+
+h1 {
+  margin: 24px;
+}
+
+h2 {
+  margin-top: 20px;
+  margin-bottom: 0;
+  color: white;
+  font-size: 42px;
+}
+
+.row-container {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  margin: 0 auto;
+  margin-top: 14px;
+}
+
+.timeline-row {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 30px;
+}
+
+.left-arrow {
+  position: fixed;
+  top: 50%;
+  left: 0px;
+}
+
+.right-arrow {
+  position: fixed;
+  top: 50%;
+  right: 0px;
+}
+
+ul {
+  list-style: none;
+  text-align: left;
+  color: white;
+  font-size: 14px;
+  padding-left: 20;
+}
+
+ol {
+  text-align: left;
+  color: white;
+  font-size: 14px;
+  padding-left: 20;
+}
+
+li {
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.month-container {
+  color: white;
+  font-size: 22px;
+  text-align: center;
+  flex: 1;
+}
+
+.month-title {
+  text-transform: uppercase;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+  color: #1DB954;
 }
 
-* {
-  box-sizing: border-box;
+.App-link {
+  color: #61dafb;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+.timeline-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.logout-container {
+  padding-bottom: 72px;
+}
+
+footer {
+  font-size: 13px;
+  margin-top: 32px;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
+}
+
+footer p {
+  position: relative;
+  bottom: 6px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
