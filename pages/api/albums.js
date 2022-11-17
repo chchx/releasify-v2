@@ -5,9 +5,16 @@ const handler = async (req, res) => {
   const {
     token: {accessToken},
   } = await getSession({req});
-  let response = await getArtistAlbums(accessToken);
-  response = res.status(200).json(response);
-  return response;
+  try {
+
+    let response = await getArtistAlbums(accessToken);
+    console.log('RESPONSE 1 IS...', response)
+    response = res.status(200).json(response);
+    console.log('RESPONSE 2 IS...', response)
+    return response;
+  } catch (e) {
+    console.error(e)
+  }
 };
 
 export default handler;

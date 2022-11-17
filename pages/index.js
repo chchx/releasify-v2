@@ -58,6 +58,7 @@ export default function Home() {
         setAlbumData(albumData.concat(albums));
         setAlbumCalendar(createCalendar(albums, year));
       })
+      .catch((e) => console.error(e))
   }
 
   return (
