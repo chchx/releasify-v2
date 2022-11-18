@@ -1,9 +1,10 @@
 import { useSession, signIn, signOut } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import { getArtistAlbums } from '../lib/spotify.js';
-import NavArrow from '../components/NavArrow.jsx'
-import LoadingSpinner from '../components/LoadingSpinner.jsx'
-import createCalendar from '../lib/main.js'
+import NavArrow from '../components/NavArrow.jsx';
+import LoadingSpinner from '../components/LoadingSpinner.jsx';
+import createCalendar from '../lib/main.js';
+import { Helmet } from 'react-helmet';
 
 
 export default function Home() {
@@ -67,6 +68,9 @@ export default function Home() {
 
   return (
     <div className="App" tabIndex={0} onKeyDown={keyHandler}>
+      <Helmet>
+        <meta name="google-site-verification" content="PNMlCkd59hDkbYT2xlMOht3vv5b6kMJh1aWT32LfSuc" />
+      </Helmet>
       <header className="App-header">
         <h1>Releasify</h1>
         <h3>BETA</h3>
