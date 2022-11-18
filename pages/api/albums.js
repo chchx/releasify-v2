@@ -10,6 +10,7 @@ const handler = async (req, res) => {
     let response = await getArtistAlbums(accessToken);
     console.log('RESPONSE 1 IS...', response)
     response = res.status(200).json(response);
+    // response = res.status(200).send(response);
     console.log('RESPONSE 2 IS...', response)
     return response;
   } catch (e) {

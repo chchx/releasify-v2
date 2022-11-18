@@ -2,13 +2,16 @@ import { useSession, signIn, signOut } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 import { getArtistAlbums } from '../lib/spotify.js';
 import NavArrow from '../components/NavArrow.jsx'
+import LoadingSpinner from '../components/LoadingSpinner.jsx'
 import createCalendar from '../lib/main.js'
+
 
 export default function Home() {
   const { data: session, status, clear } = useSession();
   const [albumData, setAlbumData] = useState([]);
   const [albumCalendar, setAlbumCalendar] = useState({});
   const [year, setYear] = useState(new Date().getFullYear());
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (Object.keys(albumData).length > 0) {
@@ -48,8 +51,10 @@ export default function Home() {
     }
   };
 
-  const routeHandler = (e) => {
+  const routeHandler = async (e) => {
     e.preventDefault()
+
+    await setIsLoading(true);
 
     fetch('/api/albums')
       .then((res) => res.json())
@@ -58,7 +63,13 @@ export default function Home() {
         setAlbumData(albumData.concat(albums));
         setAlbumCalendar(createCalendar(albums, year));
       })
-      .catch((e) => console.error(e))
+      .then(() => {
+        setIsLoading(false)
+      })
+      .catch((e) => {
+        console.error(e)
+        setIsLoading(false)
+      })
   }
 
   return (
@@ -120,9 +131,12 @@ export default function Home() {
         {session
           ? <div className="button-container">
             {
+              isLoading ? <LoadingSpinner /> : ''
+            }
+            {
               Object.keys(albumData).length === 0 ?
-                <button onClick={routeHandler}>Load timeline</button>
-                : <button onClick={routeHandler}>Reload timeline</button>
+                <button onClick={routeHandler} disabled={isLoading}>Load timeline</button>
+                : ''
             }
             <button onClick={() => signOut()}>Logout</button>
             Signed in as {session?.token?.email} <br />
