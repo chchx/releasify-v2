@@ -68,86 +68,84 @@ export default function Home() {
 
   return (
     <div className="App" tabIndex={0} onKeyDown={keyHandler}>
-      <Helmet>
+      <head>
         <meta name="google-site-verification" content="PNMlCkd59hDkbYT2xlMOht3vv5b6kMJh1aWT32LfSuc" />
-      </Helmet>
-      <body>
-        <header className="App-header">
-          <h1>Releasify</h1>
-          <h3>BETA</h3>
-        </header>
-        {Object.keys(albumData).length > 0 ?
-          <main>
-            {Object.keys(albumCalendar).length > 1
-              && <h2>{year}</h2>}
-            {albumData.length > 0 &&
-              <NavArrow arrowHandler={arrowHandler} direction="left-arrow" />
-            }
-            <div className="timeline-wrapper">
-              <div className="row-container">
-                <div className="timeline-row">
-                  {Object.keys(albumCalendar).map((month, index) => {
-                    if (index <= 5) {
-                      return (
-                        <div className="month-container">
-                          <div className="month-title">{month}</div>
-                          <ol>
-                            {albumCalendar[month].map((album, array) => {
-                              return <li><a href={album.external_urls.spotify}>{album.name}</a> by {album.artists[0].name}</li>
-                            })}
-                          </ol>
-                        </div>
-                      );
-                    }
-                  })}
-                </div>
-                <div className="timeline-row">
-                  {Object.keys(albumCalendar).map((month, index) => {
-                    if (index > 5) {
-                      return (
-                        <div className="month-container">
-                          <div className="month-title">{month}</div>
-                          <ol>
-                            {albumCalendar[month].map((album, array) => {
-                              return <li><a href={album.external_urls.spotify}>{album.name}</a> by {album.artists[0].name}</li>
-                            })}
-                          </ol>
-                        </div>
-                      );
-                    }
-                  })}
-                </div>
+      </head>
+      <header className="App-header">
+        <h1>Releasify</h1>
+        <h3>BETA</h3>
+      </header>
+      {Object.keys(albumData).length > 0 ?
+        <main>
+          {Object.keys(albumCalendar).length > 1
+            && <h2>{year}</h2>}
+          {albumData.length > 0 &&
+            <NavArrow arrowHandler={arrowHandler} direction="left-arrow" />
+          }
+          <div className="timeline-wrapper">
+            <div className="row-container">
+              <div className="timeline-row">
+                {Object.keys(albumCalendar).map((month, index) => {
+                  if (index <= 5) {
+                    return (
+                      <div className="month-container">
+                        <div className="month-title">{month}</div>
+                        <ol>
+                          {albumCalendar[month].map((album, array) => {
+                            return <li><a href={album.external_urls.spotify}>{album.name}</a> by {album.artists[0].name}</li>
+                          })}
+                        </ol>
+                      </div>
+                    );
+                  }
+                })}
+              </div>
+              <div className="timeline-row">
+                {Object.keys(albumCalendar).map((month, index) => {
+                  if (index > 5) {
+                    return (
+                      <div className="month-container">
+                        <div className="month-title">{month}</div>
+                        <ol>
+                          {albumCalendar[month].map((album, array) => {
+                            return <li><a href={album.external_urls.spotify}>{album.name}</a> by {album.artists[0].name}</li>
+                          })}
+                        </ol>
+                      </div>
+                    );
+                  }
+                })}
               </div>
             </div>
-            {year < 2022
-              && <NavArrow arrowHandler={arrowHandler} direction="right-arrow" />
+          </div>
+          {year < 2022
+            && <NavArrow arrowHandler={arrowHandler} direction="right-arrow" />
+          }
+        </main>
+        : ''
+      }
+      <div className="button-wrapper">
+        {session
+          ? <div className="button-container">
+            {
+              isLoading ? <LoadingSpinner /> : ''
             }
-          </main>
-          : ''
-        }
-        <div className="button-wrapper">
-          {session
-            ? <div className="button-container">
-              {
-                isLoading ? <LoadingSpinner /> : ''
-              }
-              {
-                Object.keys(albumData).length === 0 ?
-                  <button onClick={routeHandler} disabled={isLoading}>Load timeline</button>
-                  : ''
-              }
-              <button onClick={() => signOut()}>Logout</button>
-              Signed in as {session?.token?.email} <br />
-            </div>
-            : <div>
-              <button onClick={() => signIn()}>Connect Spotify</button>
-            </div>}
-        </div>
+            {
+              Object.keys(albumData).length === 0 ?
+                <button onClick={routeHandler} disabled={isLoading}>Load timeline</button>
+                : ''
+            }
+            <button onClick={() => signOut()}>Logout</button>
+            Signed in as {session?.token?.email} <br />
+          </div>
+          : <div>
+            <button onClick={() => signIn()}>Connect Spotify</button>
+          </div>}
+      </div>
 
-        <footer>
-          <p>Made with ❤️ by <a href="https://github.com/chchx">@chchx</a></p>
-        </footer>
-      </body>
+      <footer>
+        <p>Made with ❤️ by <a href="https://github.com/chchx">@chchx</a></p>
+      </footer>
     </div>
   )
 }
