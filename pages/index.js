@@ -19,9 +19,9 @@ export default function Home() {
     }
   }, [year]);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
 
   const arrowHandler = (e) => {
     console.log(e.target.id)
@@ -66,7 +66,7 @@ export default function Home() {
   }
 
   return (
-    <div className="App" autoFocus tabIndex={0} onKeyDown={keyHandler}>
+    <div className="App" tabIndex={0} onKeyDown={keyHandler}>
       <header className="App-header">
         <h1>Releasify</h1>
         <h3>BETA</h3>
